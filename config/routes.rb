@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
 
   root to: 'main#index'
+
+  get "/my-test", to: "my_test#index"
 end
