@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
 	def index
-		@name = 'Boram Han'	
+		@name = $twitter.user('boramamohani')
 	end
 	
 end
