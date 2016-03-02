@@ -1,27 +1,24 @@
-<div class="ui card">
-  <div class="image">
-
-   <img src="http://semantic-ui.com/images/avatar2/large/kristy.png">
-
-  </div>
-  <div class="content">
-    <a class="header"><%= @name %></a>
-    <div class="meta">
-      <span class="date">Joined in 2013</span>
+<% @tweets.each do |t| %>
+  <div class="ui card">
+    <div class="image">
+     <img src=<%= t.user.profile_image_url %>>
     </div>
-    <div class="description">
-      Kristy is an art director living in New York.
+    <div class="content">
+      <a class="header"><%= t.user.name %></a>
+      <div class="meta">
+        <span class="date">created at <%= t.created_at %></span>
+      </div>
+      <div class="description">
+        <%= t.text%>
+        <br>
+        <span>retweeted <%= t.retweet_count %> times</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <a>
+        <i class="user icon"></i>
+        <%= t.url %>
+      </a>
     </div>
   </div>
-  <div class="extra content">
-    <a>
-      <i class="user icon"></i>
-      22 Friends
-    </a>
-  </div>
-</div>
-
-<%= @tweets.each do |t| %>
-  <%= t.text%>
 <% end %>
-<%= @array %>

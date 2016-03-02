@@ -1,24 +1,7 @@
-class NewsController < ApplicationController
-	def collect_with_max_id(collection=[], max_id=nil, &block)
-		response = yield(max_id)
-		collection += response
-		response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
-	end
-	
-	def $twitter.get_all_tweets(user)
-		options = {count: 200, include_rts: true}
-		#options[:max_id] = max_id unless max_id.nil?
-		user_timeline(user, options)
-	end
-	
+class NewsController < ApplicationController	
 	def index
-		@name = $twitter.user('boramamohani')
-		@tweets = $twitter.get_all_tweets('boramamohani')
-
-		@array = Array.new
-		$twitter.search("to:justinbieber marry me", result_type: "recent").take(3).each do |tweet|
-			@array << tweet.text 
-		end
+		#@tweets = $twitter.get_all_tweets('boramamohani')
+		@tweets = $twitter.search("감사", geocode: '37.527114,127.027861,100km', result_type: "mixed", lang: 'ko').take(20)
 	end
 	
 end
