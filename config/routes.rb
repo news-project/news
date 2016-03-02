@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
 
   root to: 'main#index'
+  get "main/walter"
 end
