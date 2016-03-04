@@ -51,5 +51,18 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
 gem 'react-rails'
+
+# user authentication
+gem 'devise', '4.0.0.rc1'
+
+# rss feed parser http://feedjira.com/
+gem 'feedjira'
+
+# 한글 형태소 분석기
+gem 'twitter-korean-text-ruby'
+
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
+
+gem 'activeadmin', github: 'activeadmin'
+gem 'kaminari',   github: 'amatsuda/kaminari', branch: '0-17-stable' # support activeadmin for rails 5.0
