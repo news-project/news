@@ -46,6 +46,7 @@ class RawArticle < ApplicationRecord
 
   def spawn_article(force: false)
     return article if article && !force
+    return nul unless page.present?
     spawned = article || build_article
     spawned.attributes = {
       press: press,
