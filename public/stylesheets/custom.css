@@ -1,0 +1,13 @@
+#news-header {
+	display: block
+}
+
+#news-header i {
+	display: inline-block;
+}
+
+#news-header h1 {
+	display: inline-block;
+	color: blue;
+}
+

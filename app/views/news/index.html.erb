@@ -1,27 +1,47 @@
+
+<div id="header-area">
+  <div class="news-header">
+    <i class="twitter icon"> </i>
+    <% if @qtype == "recent" then type ="최신" end%>
+    <h1>"<%= @q%>"에 대한 <%=type%> 한글 짹짹 - <%=@howmany%>개</h1>
+  </div>
+</div>
+
+
 <div class="ui container">
-<div class="ui feed">   
-<% @tweets.each do |t| %>
-  
-  <div class="event">
-    <div class="label">
-      <img src=<%= t.user.profile_image_url %>>
-    </div>
+
+  <div class="ui feed">   
+
+  <% @tweets.each do |t| %>
     
-    <div class="content">
-      <div class="summary"> <%= t.user.name %> <span class="date">created at <%= t.created_at %></span>
+    <div class="event centered">
+      <div class="label">
+        <img src=<%= t.user.profile_image_url %>>
       </div>
       
-      <div class="extra text" >
-        <a href="<%= t.url %>"> <%= t.text %></a>
+      <div class="content">
+        <div class="summary"> <%= t.user.name %> <span class="date">created at <%= t.created_at %></span>
+        </div>
+        
+        <div class="extra text" >
+          <a href="<%= t.url %>"> <%= t.text %></a>
+        </div>
+
+        <% if t.retweet_count > 0 %>
+        <div class="meta">
+              <%if t.retweet_count > 99%>
+                <span class="superhot"> <i class="fire icon"></i> <%= t.retweet_count %>명이 다시 전달한 목소리 입니다</span>
+              <% else %>
+                <span class="hot"> <%= t.retweet_count %>명이 다시 전달한 목소리 입니다 </span>
+              <%end%>  
+        </div>
+        <%end%>  
+      
+        
       </div>
-     
-      <span>retweet <%= t.retweet_count %> times</span>
+
     </div>
+  <% end %>
 
   </div>
-
-      
-<% end %>
-
-</div>
 </div>
