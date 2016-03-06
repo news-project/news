@@ -1,24 +1,27 @@
+<div class="ui container">
+<div class="ui feed">   
 <% @tweets.each do |t| %>
-  <div class="ui card">
-    <div class="image">
-     <img src=<%= t.user.profile_image_url %>>
+  
+  <div class="event">
+    <div class="label">
+      <img src=<%= t.user.profile_image_url %>>
     </div>
+    
     <div class="content">
-      <a class="header"><%= t.user.name %></a>
-      <div class="meta">
-        <span class="date">created at <%= t.created_at %></span>
+      <div class="summary"> <%= t.user.name %> <span class="date">created at <%= t.created_at %></span>
       </div>
-      <div class="description">
-        <%= t.text%>
-        <br>
-        <span>retweeted <%= t.retweet_count %> times</span>
+      
+      <div class="extra text" >
+        <a href="<%= t.url %>"> <%= t.text %></a>
       </div>
+     
+      <span>retweet <%= t.retweet_count %> times</span>
     </div>
-    <div class="extra content">
-      <a>
-        <i class="user icon"></i>
-        <%= t.url %>
-      </a>
-    </div>
+
   </div>
+
+      
 <% end %>
+
+</div>
+</div>
