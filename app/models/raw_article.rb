@@ -24,13 +24,13 @@ class RawArticle < ApplicationRecord
 
     def spawn_articles
       includes(:article).find_each do |raw_arti|
-        raw_arti.spawn_article
+        raw_arti.spawn_article unless raw_arti.article
       end
     end
   end
 
   def fetch_page
-    update(page: crawl_page)
+    update(page: crawl_page, page_fetched_at: Time.now)
   rescue => e
     increment! :page_fetch_error_count
     raise e
