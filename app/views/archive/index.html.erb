@@ -1,4 +1,14 @@
+<% @articles.each do |article| %>
+
 
 <div>
-  <%= @article %>
+  <a href=<%= article.link %>><%= article.title %></a>
 </div>
+<div>
+  <p><%= article.content%></p>
+</div>
+<div>
+  <img src=<%= article.images.first %>></img>
+</div>
+
+<% end %>

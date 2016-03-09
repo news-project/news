@@ -1,6 +1,6 @@
 class ArchiveController < ApplicationController
   def index
-    @articles = "articles"
+    @articles = Article.all
   end
 
 end
