@@ -66,3 +66,9 @@ gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 
 gem 'activeadmin', github: 'activeadmin'
 gem 'kaminari',   github: 'amatsuda/kaminari', branch: '0-17-stable' # support activeadmin for rails 5.0
+
+#Haml
+gem 'haml', '~> 4.0', '>= 4.0.7'
+
+#pagination
+# gem 'will_paginate'

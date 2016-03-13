@@ -1,0 +1,3 @@
+$('#articles').append('<%= j render @articles %>') ;
+
+$("#loadMore").attr("href", '<%= archive_path(page: (@articles.current_page + 1), q: params[:q]) %>')

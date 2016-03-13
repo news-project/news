@@ -1,0 +1,12 @@
+.item
+  .image
+    %img{ src: (article.images.first || "#") }
+  .content
+    %a.header{ href: article.link, target: '_blank' }= article.title
+    .meta
+      %span
+        %a{ href: article.press.homepage_url, target: '_blank' }= article.press.name
+    .description
+      %p= article.content[0..1000]
+    .extra
+      = "#{article.raw_article.author} | #{article.published_at}"
