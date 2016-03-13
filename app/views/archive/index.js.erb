@@ -1,8 +1,3 @@
-$('#articles').append('<%= j render @articles %>') ; 
+$('#articles').append('<%= j render @articles %>') ;
 
-<% if @articles.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate @articles %>') ; 
-<% else %>
-  $(window).off('scroll');
-  $('.pagination').remove() ; 
-<% end %>
+$("#loadMore").attr("href", '<%= archive_path(page: (@articles.current_page + 1), q: params[:q]) %>')

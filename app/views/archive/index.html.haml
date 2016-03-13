@@ -1,5 +1,8 @@
-#articles
+%form{ action: '/archive', method: 'GET'}
+  .ui.input
+    %input#search-input{ type: 'text', placeholder: '검색하기', name: 'q', value: params[:q] }
+
+#articles.ui.items
   = render @articles
 
-#infinite-scrolling
-  = will_paginate @articles
+= link_to '더보기', archive_path(page: (@articles.current_page + 1), q: params[:q]), remote: true, id: "loadMore", class: 'ui button'
