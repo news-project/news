@@ -1,16 +1,5 @@
-- @articles.each do |article|
-  %div
-    - article.images.each do |img|
-      %img{:src => img}  
+#articles
+  = render @articles
 
-    %ul
-      %li 
-        %a{:href => article.link}= article.title
-      %li 
-        %a{:href => article.press.homepage_url}= article.press.name
-      %li= article.raw_article.author
-      %li= article.published_at
-      %li 
-        %p= article.content
-    
-        
+#infinite-scrolling
+  = will_paginate @articles

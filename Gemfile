@@ -69,3 +69,6 @@ gem 'kaminari',   github: 'amatsuda/kaminari', branch: '0-17-stable' # support a
 
 #Haml
 gem 'haml', '~> 4.0', '>= 4.0.7'
+
+#pagination
+gem 'will_paginate'

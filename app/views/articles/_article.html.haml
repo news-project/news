@@ -1,0 +1,11 @@
+%div
+  
+  %ul
+    %li 
+      %a{:href => article.link}= article.title
+    %li 
+      %a{:href => article.press.homepage_url}= article.press.name
+    %li= article.raw_article.author
+    %li= article.published_at
+    %li 
+      %p= article.content
