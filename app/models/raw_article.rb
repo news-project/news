@@ -1,5 +1,8 @@
 require 'open-uri'
 
+# RSS Feed로 받은 기본 아티클 정보
+# Press 모델로 부터 피드를 받아 생성한다.
+# 생성후 #fetch_page를 통해 해당 기사의 HTML을 가져온다.
 class RawArticle < ApplicationRecord
   include PageParserable
 
@@ -24,13 +27,13 @@ class RawArticle < ApplicationRecord
 
     def spawn_articles
       includes(:article).find_each do |raw_arti|
-        raw_arti.spawn_article
+        raw_arti.spawn_article unless raw_arti.article
       end
     end
   end
 
   def fetch_page
-    update(page: crawl_page)
+    update(page: crawl_page, page_fetched_at: Time.now)
   rescue => e
     increment! :page_fetch_error_count
     raise e
@@ -44,6 +47,7 @@ class RawArticle < ApplicationRecord
     result
   end
 
+  # 기사페이지의 HTML(page attirubte)을 바탕으로 article을 만든다.
   def spawn_article(force: false)
     return article if article && !force
     return unless page.present?
