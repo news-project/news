@@ -6,6 +6,9 @@ class Article < ApplicationRecord
   belongs_to :raw_article
 
   validates :title, presence: true
+
+  scope :publisher, -> (publisher) {where press_id: publisher}
+  scope :cut_day, -> (cut_day) {where "published_at > ?", Time.now - cut_day.to_i * (60 * 60 * 24)}
 end
 
 # == Schema Information
