@@ -4,6 +4,7 @@ class Article < ApplicationRecord
 
   belongs_to :press
   belongs_to :raw_article
+  belongs_to :journalist
 
   validates :title, presence: true
 end
@@ -23,6 +24,7 @@ end
 #  published_at   :datetime
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  journalist_id  :integer
 #
 # Indexes
 #

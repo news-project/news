@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306071903) do
+ActiveRecord::Schema.define(version: 20160410060829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,20 @@ ActiveRecord::Schema.define(version: 20160306071903) do
     t.datetime "published_at"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.index ["press_id", "published_at"], name: "index_articles_on_press_id_and_published_at", using: :btree
-    t.index ["published_at"], name: "index_articles_on_published_at", using: :btree
-    t.index ["raw_article_id"], name: "index_articles_on_raw_article_id", using: :btree
-    t.index ["title"], name: "index_articles_on_title", using: :btree
+    t.integer  "journalist_id"
+  end
+
+  add_index "articles", ["press_id", "published_at"], name: "index_articles_on_press_id_and_published_at", using: :btree
+  add_index "articles", ["published_at"], name: "index_articles_on_published_at", using: :btree
+  add_index "articles", ["raw_article_id"], name: "index_articles_on_raw_article_id", using: :btree
+  add_index "articles", ["title"], name: "index_articles_on_title", using: :btree
+
+  create_table "journalists", force: :cascade do |t|
+    t.integer  "press_id"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "presses", force: :cascade do |t|
@@ -47,9 +57,10 @@ ActiveRecord::Schema.define(version: 20160306071903) do
     t.datetime "deleted_at"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.index ["category"], name: "index_presses_on_category", using: :btree
-    t.index ["name"], name: "index_presses_on_name", using: :btree
   end
+
+  add_index "presses", ["category"], name: "index_presses_on_category", using: :btree
+  add_index "presses", ["name"], name: "index_presses_on_name", using: :btree
 
   create_table "raw_articles", force: :cascade do |t|
     t.integer  "press_id",                           null: false
@@ -65,10 +76,11 @@ ActiveRecord::Schema.define(version: 20160306071903) do
     t.datetime "deleted_at"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["link"], name: "index_raw_articles_on_link", using: :btree
-    t.index ["page_fetched_at"], name: "index_raw_articles_on_page_fetched_at", using: :btree
-    t.index ["press_id"], name: "index_raw_articles_on_press_id", using: :btree
   end
+
+  add_index "raw_articles", ["link"], name: "index_raw_articles_on_link", using: :btree
+  add_index "raw_articles", ["page_fetched_at"], name: "index_raw_articles_on_page_fetched_at", using: :btree
+  add_index "raw_articles", ["press_id"], name: "index_raw_articles_on_press_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -78,15 +90,17 @@ ActiveRecord::Schema.define(version: 20160306071903) do
     t.integer  "tagger_id"
     t.string   "context",       limit: 128
     t.datetime "created_at"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
   end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -106,9 +120,10 @@ ActiveRecord::Schema.define(version: 20160306071903) do
     t.boolean  "admin",                  default: false, null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
+
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
