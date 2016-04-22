@@ -1,11 +1,14 @@
 class ArchiveController < ApplicationController
   def index
-    @articles = Article.includes(:raw_article, :press).order('published_at DESC').page(params[:page])
+    @articles = Article.all.includes(:raw_article, :press)
+        
     @articles = @articles.where("title LIKE ?", "%#{params[:q]}%") if params[:q].present?
-
+       
     filter_search(params).each do |k, v|
       @articles = @articles.public_send(k, v) if v.present?
     end
+
+    @articles = @articles.order('published_at DESC').page(params[:page])
   end
 
   private 

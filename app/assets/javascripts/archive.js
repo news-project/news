@@ -10,3 +10,14 @@
 //     });
 //   }
 // });
+
+
+$(function() {
+  $('#search_field').on('change', 'input:radio', function() {
+    $('#search_field').submit() ; 
+  });
+
+  $('#search_field').submit(function() {
+    $.get(this.action, $(this).serialize, null, "script") ; 
+  }) ;  
+}) ; 

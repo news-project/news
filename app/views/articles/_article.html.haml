@@ -7,6 +7,6 @@
       %span
         %a{ href: article.press.homepage_url, target: '_blank' }= article.press.name
     .description
-      %p= article.content[0..1000]
+      %p= article.content[0...100]
     .extra
       = "#{article.raw_article.author} | #{article.published_at}"

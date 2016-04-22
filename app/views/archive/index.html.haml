@@ -1,8 +1,53 @@
-%form{ action: '/archive', method: 'GET'}
-  .ui.input
-    %input#search-input{ type: 'text', placeholder: '검색하기', name: 'q', value: params[:q] }
+%div
+  = form_tag "/archive", method: 'GET', id: "search_field", name: "search_field", remote: true do
+    .ui.input
+      %input#search-input{ type: 'text', placeholder: '검색하기', name: 'q', value: params[:q] }
+
+    %div
+      %label
+        %input{type: "radio", name: "publisher", value: ""}
+        전체 신문사
+      %label
+        %input{type: "radio", name: "publisher", value: "1"}
+        경향신문
+      %label
+        %input{type: "radio", name: "publisher", value: "2"}
+        조선일보  
+      %label
+        %input{type: "radio", name: "publisher", value: "3"}
+        한겨례  
+      %label
+        %input{type: "radio", name: "publisher", value: "4"}
+        중앙일보
+      %label
+        %input{type: "radio", name: "publisher", value: "5"}
+        동아일보
+    
+    %div
+      %label
+        %input{type: "radio", name: "cut_day", value: ""}
+        전체 기사
+      %label
+        %input{type: "radio", name: "cut_day", value: "1"}
+        최근 하루
+      %label
+        %input{type: "radio", name: "cut_day", value: "3"}
+        지난 3일
+      %label
+        %input{type: "radio", name: "cut_day", value: "7"}
+        최근 1주일
+      %label
+        %input{type: "radio", name: "cut_day", value: "30"}
+        최근 한달
+    = submit_tag "filter"   
+
+
+#summary
+  %h1 검색어 "#{params[:q]}"
+  %h2 #{@articles.count} 건
+
 
 #articles.ui.items
   = render @articles
 
-= link_to '더보기', archive_path(page: (@articles.current_page + 1), q: params[:q]), remote: true, id: "loadMore", class: 'ui button'
+= link_to '더보기', archive_path(page: (@articles.current_page + 1), q: params[:q], cut_day: params[:cut_day], publisher: params[:publisher]), remote: true, id: "loadMore", class: 'ui button'
