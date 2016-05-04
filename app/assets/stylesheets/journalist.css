@@ -1,0 +1,93 @@
+.title {
+	margin: 0 auto;
+	width: 720px;
+}
+
+.title h1 {
+	/* 최근 관심을 끌고 있는 소신 기자들: */
+	text-align: left;
+	font-family: serif;
+	font-weight: bold;
+
+	font-size: 20px;
+	color: #000000;
+}
+
+.card {
+	width: 720px;
+	height: 100px;
+	background-color: rgba(255,255,255,1);
+	box-shadow: 2px 2px 2px 1px #D4D2D2;
+	border-radius: 0px;
+
+	margin: 20px auto 0px auto;
+}
+
+.card img {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100px;
+	height: 100px;
+
+}
+
+.card .name {
+	position: absolute;
+	top: 32px;
+	left: 120px;
+
+	font-family: serif;
+	font-size: 26px;
+	color: #402355;
+	font-weight: bold;
+	letter-spacing: -2px;
+
+}
+
+.card .publisher {
+	position: absolute;
+	top: 42px;
+	left:268px;
+	/* 시사IN: */
+	font-family: serif;
+	font-size: 14px;
+	color: #3C3C3C;
+	font-weight: bold;
+}
+
+.card .clarity-box {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 100px;
+	height: 100px;
+	background: #400574;
+	padding-top: 32px;
+}
+.card .clarity-box .clarity {
+	font-size: 26px;
+	color: #FFFFFF;
+	font-family: serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+.news-card {
+	position: relative;
+	width: 720px;
+	height: 80px;
+	background: #F0F0F0;
+	margin: 8px auto;
+}
+
+.news-card h4{
+	position: absolute;
+	top: 22px;
+	left: 20px;
+	font-size: 18px;
+	color: black;
+	font-family: serif;
+	font-weight: bold;
+}들

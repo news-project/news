@@ -19,6 +19,7 @@
 //= require components
 
 // ** vendor
-//= require semantic
+//= require tether
+//= require bootstrap
 
 //= require_tree .

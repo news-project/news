@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   root to: 'main#index'
   get 'archive', to: 'archive#index'
+  get 'journalists', to: 'journalists#index'
 
 end
