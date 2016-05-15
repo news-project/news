@@ -4,51 +4,16 @@
       .title
         %h1 최근 관심을 끌고 있는 소신 가자
 
-      .card
-        = image_tag(@journalists[0][:img_url])
-        .name= @journalists[0][:name]
-        .publisher= @journalists[0][:publisher]
-        .num-comments= @journalists[0][:num_comments]
-        .num-views= @journalists[0][:num_views]
-        .num-articles= @journalists[0][:num_articles]
-        .clarity-box
-          .clarity= @journalists[0][:clarity]
-      .news-card
-        %h4 '보기엔 괜찮은데…' 특이한 맑은황사, 유해물질은 그대로
-      .news-card
-        %h4 사라진 7표’ 진주선관위는 여전히 설명하지 못한다
-      .news-card
-        %h4 [평생행복 생활체육]몸살 나도 무릎 쑤셔도… 1시간만 운동하면 몸 가뿐
-      
-      .card
-        = image_tag(@journalists[1][:img_url])
-        .name= @journalists[1][:name]
-        .publisher= @journalists[1][:publisher]
-        .num-comments= @journalists[1][:num_comments]
-        .num-views= @journalists[1][:num_views]
-        .num-articles= @journalists[1][:num_articles]
-        .clarity-box
-          .clarity= @journalists[1][:clarity]
-      .news-card
-        %h4 朴대통령, 히잡에 이란 국기색 '패션외교'로 세일즈 뒷받침
-      .news-card
-        %h4 [사설]김종인 팽개치는 더민주, ‘수권정당’ 가능한가
-      .news-card
-        %h4 [박 대통령 이란 방문이 남긴 것]‘미국 빼고’ 한·이란 협력, 시험대 올랐다
-
-      .card
-        = image_tag(@journalists[2][:img_url])
-        .name= @journalists[2][:name]
-        .publisher= @journalists[2][:publisher]
-        .num-comments= @journalists[2][:num_comments]
-        .num-views= @journalists[2][:num_views]
-        .num-articles= @journalists[2][:num_articles]
-        .clarity-box
-          .clarity= @journalists[2][:clarity]
-      .news-card
-        %h4 파르티아 청동왕자상 앞에 선 박근혜 대통령
-      .news-card
-        %h4 더민주 전당대회 8월말~9월초…전대까지 ‘김종인 체제’ 유지
-      .news-card
-        %h4 새누리당 원내대표에 정진석, 정책위의장에 김광림
-
+      - @journalists.each do |journalist|
+        .card
+          = image_tag("https://upload.wikimedia.org/wikipedia/ko/archive/6/6e/20121016024552!JJW.JPG")
+          .name= journalist.name
+          .publisher= journalist.press.name
+          .num-comments 20
+          .num-views 300
+          .num-articles= journalist.articles.count
+          .clarity-box
+            .clarity +100
+        - journalist.articles.order(id: :desc).limit(5).each do |article|
+          .news-card
+            %h4= link_to(article.title, article.link, target: '_blank')

@@ -52,8 +52,15 @@ class RawArticle < ApplicationRecord
     return article if article && !force
     return unless page.present?
     spawned = article || build_article
+    journalist = Journalist.find_or_create(
+                  Journalist.new(press_id: press_id,
+                                 name: author_name,
+                                 email: author_email
+                                 )
+                              )
     spawned.attributes = {
       press: press,
+      journalist: journalist,
       link: link,
       title: (page_title || title),
       subtitle: page_subtitle,
@@ -62,6 +69,18 @@ class RawArticle < ApplicationRecord
       published_at: date
     }
     spawned.save
+  end
+
+  def author_email
+    author.scan(/\w+@[\w.-]+|\{(?:\w+, *)+\w+\}@[\w.-]+/)[0]
+  rescue
+    nil
+  end
+
+  def author_name
+    author.scan(/.+?(?=\s)/)[0]
+  rescue
+    nil
   end
 end
 
