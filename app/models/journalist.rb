@@ -1,5 +1,6 @@
 class Journalist < ApplicationRecord
   has_many :articles
+  belongs_to :press
   validates :name, uniqueness: { scope: [:press_id, :email] }
 
   class << self

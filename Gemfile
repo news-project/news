@@ -46,6 +46,7 @@ group :development do
   gem 'awesome_print'
   gem 'annotate'
   gem 'method_source'
+  gem 'better_errors'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

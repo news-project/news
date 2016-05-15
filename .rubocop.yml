@@ -1,0 +1,98 @@
+AllCops:
+  Exclude:
+    - 'app/admin/**/*'
+    - '**/*.haml'
+# inherit_from: .rubocop_todo.yml
+
+Lint/AssignmentInCondition:
+  Enabled: false
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/FileName:
+  Enabled: false
+# 추가 변경해서 적용할 것
+Style/GlobalVars:
+  Enabled: false
+
+Style/TrivialAccessors:
+  Enabled: false
+
+Style/OpMethod:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
+
+# 클래스 도큐먼트 작성하지 않음
+Style/Documentation:
+  Enabled: false
+# 메스드, 라인, 클래스, 복잡도 길이 변경
+Metrics/PerceivedComplexity:
+  Max: 8
+Metrics/MethodLength:
+  Max: 300
+Metrics/LineLength:
+  Max: 500
+Metrics/CyclomaticComplexity:
+  Max: 30
+Metrics/ClassLength:
+  Max: 300
+Metrics/AbcSize:
+  Enabled: false
+
+Performance/ParallelAssignment:
+  Enabled: false
+
+# HABT 사용
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Style/PredicateName:
+  Enabled: false
+
+Style/ClassVars:
+  Enabled: false
+
+# mongoid issue 로 해당 사항 적용할 수 없음
+Rails/DefaultScope:
+  Enabled: false
+
+
+## 결제 모듈 파라미터 길이로 인해 추가 -> 추후 수정
+#Metrics/ParameterLists:
+#  Max: 6
+
+# Rails 4 syntax
+Rails/ActionFilter:
+  Enabled: false
+
+# 한글 주석 사용함
+Style/AsciiComments:
+  Enabled: false
+
+# Controller 와 Model 간의 namespace가 겹치는 부분 존재
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/MultilineTernaryOperator:
+  Enabled: false
+
+Style/BlockComments: # config 파일에서 사용이 용이함.
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
